@@ -29,6 +29,7 @@
     font-weight: bold;
     text-align: center;
     border-radius: 20px;
+    border: none;
 }
 .settings-input-wrapper{
     display: flex;
