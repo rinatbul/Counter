@@ -30,6 +30,8 @@
     text-align: center;
     border-radius: 20px;
     border: none;
+    outline: none;
+    caret-color: transparent;
 }
 .settings-input-wrapper{
     display: flex;
