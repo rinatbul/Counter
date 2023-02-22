@@ -3,6 +3,7 @@ import React, {useState} from "react";
 type CounterPropsType = {
     minValue: number
     maxValue: number
+    isError:boolean
 }
 export const Counter = (props: CounterPropsType) => {
     let [count, setCount] = useState(0);
@@ -18,12 +19,12 @@ export const Counter = (props: CounterPropsType) => {
     return (
         <div className='wrapper'>
             <div className='counter-input-wrapper'>
-                <input className='counter-input' value={count}/>
+                <input className='counter-input' value={props.isError?'ERR':count}/>
             </div>
             <div className='buttons-wrapper'>
                 <button onClick={onIncPressHandler}
                         className='buttons'
-                        disabled={count === props.maxValue}>INC
+                        disabled={count === props.maxValue || props.isError}>INC
                 </button>
                 <button onClick={onResetPressHandler}
                         className='buttons'
