@@ -1,29 +1,34 @@
-import React, {useRef} from "react";
+import React, {ChangeEvent, useState} from "react";
 
 type SettingsPropsType = {
-    onInputChange: (minValue: number, maxValue: number) => void
+    onSetClick: (minValue: number, maxValue: number) => void
 }
 
 export const Settings = (props: SettingsPropsType) => {
-    const minValueRef = useRef<HTMLInputElement>(null);
-    const maxValueRef = useRef<HTMLInputElement>(null);
+    const [minValue, setMinValue] = useState(0)
+    const [maxValue, setMaxValue] = useState(0)
 
-    const onClick = () => {
-        const minValue = minValueRef.current as HTMLInputElement
-        const maxValue = maxValueRef.current as HTMLInputElement
-        props.onInputChange(Number(minValue.value), Number(maxValue.value))
+    const setMinInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setMinValue(Number(e.currentTarget.value))
+    }
+    const setMaxInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setMaxValue(Number(e.currentTarget.value))
+    }
+
+    const onSetClick = () => {
+        props.onSetClick(minValue,maxValue)
     }
 
     return (
         <div className='wrapper'>
             <div className='settings-input-wrapper'>
-                <p>Min <input ref={minValueRef}/></p>
+                <p>Min <input value={minValue} onChange={setMinInputValue}/></p>
             </div>
             <div className='settings-input-wrapper'>
-                <p>Max <input ref={maxValueRef}/></p>
+                <p>Max <input value={maxValue} onChange={setMaxInputValue}/></p>
             </div>
             <div className='buttons-wrapper'>
-                <button onClick={onClick} className='buttons'>Set</button>
+                <button onClick={onSetClick} className='buttons'>Set</button>
             </div>
         </div>
     );

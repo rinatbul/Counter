@@ -4,27 +4,18 @@ import {Counter} from "./Counter";
 import {Settings} from "./Settings";
 
 function App() {
-    const [count, setCount] = useState(0);
-    const [minValue, setMinValue] = useState(0)
-    const [maxValue, setMaxValue] = useState(0)
+    let [minValue, setMinValue] = useState(0)
+    let [maxValue, setMaxValue] = useState(0)
 
-    const onClick = (count: number) => {
-       setCount(count)
-    }
-
-    const onInputChange = (minValue: number, maxValue:number) => {
-        setCount(minValue)
+    const onSetClick = (minValue: number, maxValue: number) => {
         setMinValue(minValue)
         setMaxValue(maxValue)
     }
 
     return (
         <div className="App">
-            <Counter count={count}
-                     minValue={minValue}
-                     maxValue={maxValue}
-                     onClick={onClick}/>
-            <Settings onInputChange={onInputChange}/>
+            <Counter minValue={minValue} maxValue={maxValue}/>
+            <Settings onSetClick={onSetClick}/>
         </div>
     );
 }
