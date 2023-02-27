@@ -6,18 +6,21 @@ import {Settings} from "./Settings";
 function App() {
     let [minValue, setMinValue] = useState(0)
     let [maxValue, setMaxValue] = useState(0)
-    let [isError, setIsError] = useState(false)
+    let [error, setError] = useState('')
 
     const onSetClick = (minValue: number, maxValue: number) => {
         setMinValue(minValue)
         setMaxValue(maxValue)
-        minValue >= maxValue && maxValue != 0 ? setIsError(true) : setIsError(false)
+    }
+
+    const errorMessage = (error: string) => {
+        setError(error)
     }
 
     return (
         <div className="App">
-            <Counter minValue={minValue} maxValue={maxValue} isError={isError}/>
-            <Settings onSetClick={onSetClick}/>
+            <Counter minValue={minValue} maxValue={maxValue} error={error}/>
+            <Settings onSetClick={onSetClick} errorMessage={errorMessage}/>
         </div>
     );
 }

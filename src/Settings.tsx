@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from "react";
 
 type SettingsPropsType = {
     onSetClick: (minValue: number, maxValue: number) => void
+    errorMessage: (error: string) => void
 }
 
 export const Settings = (props: SettingsPropsType) => {
@@ -9,14 +10,30 @@ export const Settings = (props: SettingsPropsType) => {
     const [maxValue, setMaxValue] = useState(0)
 
     const setMinInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setMinValue(Number(e.currentTarget.value))
+        if (!isNaN(Number(e.currentTarget.value))){
+            setMinValue(Number(e.currentTarget.value))
+        } else {
+            props.errorMessage('Incorrect minimum value! Please set the number')
+        }
     }
     const setMaxInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxValue(Number(e.currentTarget.value))
+        if (!isNaN(Number(e.currentTarget.value))){
+            setMaxValue(Number(e.currentTarget.value))
+        } else {
+            props.errorMessage('Incorrect maximum value! Please set the number')
+        }
+    }
+
+    if (maxValue === minValue && minValue !== 0) {
+        props.errorMessage('Minimum and maximum values are equal!')
+    }
+    if (maxValue < minValue && maxValue !== 0) {
+        props.errorMessage('Minimum value greater than maximum!')
     }
 
     const onSetClick = () => {
-        props.onSetClick(minValue,maxValue)
+        props.onSetClick(minValue, maxValue)
+        props.errorMessage('')
     }
 
     return (
@@ -28,7 +45,10 @@ export const Settings = (props: SettingsPropsType) => {
                 <p>Max <input value={maxValue} onChange={setMaxInputValue}/></p>
             </div>
             <div className='buttons-wrapper'>
-                <button onClick={onSetClick} className='buttons'>Set</button>
+                <button onClick={onSetClick}
+                        className='buttons'
+                        disabled={minValue > maxValue || minValue === maxValue}>Set
+                </button>
             </div>
         </div>
     );

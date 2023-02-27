@@ -32,6 +32,21 @@
     border: none;
     outline: none;
     caret-color: transparent;
+    resize: none;
+}
+.error-input{
+    background-color: #3676b2;
+    height: 100px;
+    width: 200px;
+    color: #880000;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 20px;
+    text-align: center;
+    border: none;
+    outline: none;
+    caret-color: transparent;
+    resize: none;
 }
 .settings-input-wrapper{
     display: flex;
