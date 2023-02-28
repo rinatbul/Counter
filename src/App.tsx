@@ -13,14 +13,14 @@ function App() {
         setMaxValue(maxValue)
     }
 
-    const errorMessage = (error: string) => {
+    const sendErrorMessage = (error: string) => {
         setError(error)
     }
 
     return (
         <div className="App">
             <Counter minValue={minValue} maxValue={maxValue} error={error}/>
-            <Settings onSetClick={onSetClick} errorMessage={errorMessage}/>
+            <Settings onSetClick={onSetClick} sendErrorMessage={sendErrorMessage}/>
         </div>
     );
 }
