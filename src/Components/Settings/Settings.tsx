@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
+import styles from './Settings.module.css';
 
 type SettingsPropsType = {
     onSetClick: (minValue: number, maxValue: number) => void
@@ -29,16 +30,16 @@ export const Settings = (props: SettingsPropsType) => {
     }
 
     return (
-        <div className='wrapper'>
-            <div className='settings-input-wrapper'>
+        <div className={styles.wrapper}>
+            <div className={styles.settings_input_wrapper}>
                 <p>Min <input value={minValue} onChange={setMinInputValue}/></p>
             </div>
-            <div className='settings-input-wrapper'>
+            <div className={styles.settings_input_wrapper}>
                 <p>Max <input value={maxValue} onChange={setMaxInputValue}/></p>
             </div>
-            <div className='buttons-wrapper'>
+            <div className={styles.buttons_wrapper}>
                 <button onClick={onSetClick}
-                        className='buttons'
+                        className={styles.buttons}
                         disabled={minValue > maxValue || minValue === maxValue}>Set
                 </button>
             </div>
